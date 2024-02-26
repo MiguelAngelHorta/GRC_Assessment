@@ -34,3 +34,23 @@ Utilizes references from the 'Reference' sheet.
 Toast Notification:
 
 Displays a toast notification in the spreadsheet indicating that the 'Export' and 'Owners' tabs are updated.
+
+# sortTabsAndSetC4Values file
+
+Sorting Tabs:
+
+Retrieves all sheets in the active spreadsheet.
+Defines a regular expression (regex) to match tab names in a specific format, such as "ID-0001" or "ID-0002".
+Sorts the sheets based on the last 4 digits of the tab name using a custom sorting function.
+This custom sorting function extracts the numeric portion from the tab names and sorts the sheets accordingly.
+Reordering Sheets:
+
+After sorting, it iterates through the sheets and reorders them based on the sorted array.
+Uses setActiveSheet to set the active sheet to the current sheet in the iteration.
+Uses moveActiveSheet to move the active sheet to its new position in the order.
+Setting C4 Values:
+
+Iterates through the sheets again, starting from the 6th sheet (index 5).
+For each sheet (except the one named "Dashboard"):
+Sets the value in cell C4 to the name of the sheet.
+This is done to display the sheet name in cell C4 for each sheet, providing a quick reference to the user.
