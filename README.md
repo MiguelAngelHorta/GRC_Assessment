@@ -1,5 +1,3 @@
-- [Google Sheets Assessment Template Link]( https://docs.google.com/spreadsheets/d/1G1hS-xdcinTgkcjGvrWDnTBSsqgwRGOfhJpTO-HgLrs/edit?usp=sharing)
-
 # Google Sheets Assessment
 This automation project can be used to create a summary view of all responses from specific cells from each tab. This is useful to structure the responses of questionnaire templates in each tab within the g sheets file
 
@@ -18,6 +16,7 @@ This script resets the status of all sheets by updating Cell C58 to 'Not started
 
 # AutomationButton file
 Creates custom menu button in google sheets titled 'Automation' which allows user to run appscripts with the click of a button.
+![template 4](https://github.com/MiguelAngelHorta/Google-Sheets-Assessment/assets/106134627/701d35b9-c5c9-4bac-ba86-4f1b76ecee14)
 
 # Dashboard file
 This script navigates to the "Dashboard" tab of the active Google Sheet and displays a toast notification with the message "Going to Dashboard". This is assigned to the dashboard image on the top right corner of each assessment.
@@ -33,5 +32,7 @@ Used to pull Owner's department from by using an array textjoin fucntion to conc
 Used to pull the domain name and control description =VLOOKUP(REGEXREPLACE(C4, "\s*\(.*\)", ""), Controls!A:C, 3, FALSE)
 
 # Template
+- [Google Sheets Assessment Template Link]( https://docs.google.com/spreadsheets/d/1G1hS-xdcinTgkcjGvrWDnTBSsqgwRGOfhJpTO-HgLrs/edit?usp=sharing)
+
 ![template1](https://github.com/MiguelAngelHorta/Google-Sheets-Assessment/assets/106134627/234600d4-ef43-4ebe-b179-2600a407d459)
 ![template2](https://github.com/MiguelAngelHorta/Google-Sheets-Assessment/assets/106134627/7d1e6f10-8997-4e1c-b7b9-295b2f3740de)
