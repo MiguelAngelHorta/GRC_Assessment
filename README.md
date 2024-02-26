@@ -28,6 +28,6 @@ Used to pull Owner's department from by using an array textjoin fucntion to conc
 
 Used to pull the domain name and control description =VLOOKUP(REGEXREPLACE(C4, "\s*\(.*\)", ""), Controls!A:C, 3, FALSE)
 
-#Template
+# Template
 ![template1](https://github.com/MiguelAngelHorta/Google-Sheets-Assessment/assets/106134627/234600d4-ef43-4ebe-b179-2600a407d459)
 ![template2](https://github.com/MiguelAngelHorta/Google-Sheets-Assessment/assets/106134627/7d1e6f10-8997-4e1c-b7b9-295b2f3740de)
