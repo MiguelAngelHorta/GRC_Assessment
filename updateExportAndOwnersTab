@@ -1,0 +1,79 @@
+function updateExportAndOwnersTab() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var exportSheet = ss.getSheetByName('Export');
+  var ownersSheet = ss.getSheetByName('Owners');
+
+  // Clear existing data in columns A through Y of 'Export' sheet
+  exportSheet.getRange('A:Y').clearContent();
+
+  var sheets = ss.getSheets();
+  var exportData = [];
+  var exportHeaders = ["Control #", "Control Description", "Owner(s);", "Organization(s);", "Domain", "Score", "Implementation Title", "Implementation Rating", "Implementation - Details", "Coverage Title", "Coverage Rating", "Scope", "Exclusions", "Testing Performed", "Testing - Details", "Maturity Title", "Maturity Rating", "Automation", "Automation - Details", "Monitoring", "Monitoring - Details", "Issue Management", "Issue Management - Details", "GRC Notes", "Status"];
+  exportData.push(exportHeaders);
+
+  for (var i = 0; i < sheets.length; i++) {
+    if (i < 5) continue; // Skip the first 5 sheets
+    var sheet = sheets[i];
+    var sheetName = sheet.getName();
+    var sheetUrl = ss.getUrl() + "#gid=" + sheet.getSheetId();
+    var cellsToRead = ["C5", "C9", "D9", "C3", "G8", "C12", "C14", "C18", "C21", "C25", "C29", "C30", "C34", "C36", "C37", "C41", "C42", "C47", "C49", "C54", "C58"];
+    var exportRow = ['=HYPERLINK("' + sheetUrl + '","' + sheetName + '")'];
+
+    for (var j = 0; j < cellsToRead.length; j++) {
+      var cellValue = sheet.getRange(cellsToRead[j]).getValue();
+      exportRow.push(cellValue);
+    }
+
+    // Add VLOOKUP formulas to the exportRow
+    var rowIndex = i - 3; // Adjust the row index for VLOOKUP formulas
+    exportRow.splice(7, 0, '=VLOOKUP(G' + rowIndex + ', Reference!$G:$H, 2, false)');
+    exportRow.splice(10, 0, '=VLOOKUP(J' + rowIndex + ', Reference!$G:$H, 2, false)');
+    exportRow.splice(16, 0, '=VLOOKUP(P' + rowIndex + ', Reference!$G:$H, 2, false)');
+
+    exportData.push(exportRow);
+  }
+
+  exportSheet.getRange(1, 1, exportData.length, exportData[0].length).setValues(exportData);
+
+  // Get the updated export data from the sheet
+  var exportDataRange = exportSheet.getRange(1, 1, exportData.length, exportData[0].length);
+  var updatedExportData = exportDataRange.getValues();
+
+  // Clear existing data in columns A through Y of 'Export' sheet
+  ownersSheet.getRange('A:G').clearContent();
+
+  // Process data for 'Owners' sheet
+  var ownersData = [['RUC #', 'Owner(s)', 'Domain', 'Department', 'Division', 'Teams', 'Scores']];
+  for (var i = 1; i < updatedExportData.length; i++) {
+    var exportRow = updatedExportData[i];
+    if (exportRow[2]) {
+      var segments = exportRow[2].split(';');
+      segments.forEach(function(segment) {
+        var sheetName = exportRow[0];
+        var sheet = ss.getSheetByName(sheetName);
+        var sheetUrl = ss.getUrl() + "#gid=" + sheet.getSheetId();
+        var ownerUrl = '=HYPERLINK("' + sheetUrl + '","' + sheetName + '")';
+        ownersData.push([ownerUrl, segment.trim(), exportRow[4], '', '', '', exportRow[5]]);
+      });
+    }
+  }
+
+  ownersSheet.getRange(1, 1, ownersData.length, ownersData[0].length).setValues(ownersData);
+
+  // Apply VLOOKUP formulas in 'Owners' sheet, columns D, E, and F
+  var lastRow = ownersSheet.getLastRow();
+  var rangeD = ownersSheet.getRange('D2:D' + lastRow);
+  var rangeE = ownersSheet.getRange('E2:E' + lastRow);
+  var rangeF = ownersSheet.getRange('F2:F' + lastRow);
+  var rangeG = ownersSheet.getRange('G2:G' + lastRow);
+  var formulaD = '=VLOOKUP(B2, Reference!W:AC, 6, false)';
+  var formulaE = '=VLOOKUP(B2, Reference!W:AC, 7, false)';
+  var formulaF = '=E2&"-"&D2';
+  var formulaG = '=VLOOKUP(A2, Export!A:F, 6, false)';
+  rangeD.setFormula(formulaD);
+  rangeE.setFormula(formulaE);
+  rangeF.setFormula(formulaF);
+  rangeG.setFormula(formulaG);
+
+  SpreadsheetApp.getActiveSpreadsheet().toast('Export and Owners tab are updated', 'Status', 2);
+}
