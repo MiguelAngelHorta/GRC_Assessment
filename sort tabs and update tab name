@@ -1,0 +1,30 @@
+function sortTabsAndSetC4Values() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheets = spreadsheet.getSheets();
+  var regex = /^(ID-\d{4})/; // regex to match tab names in the format "RUC-0001 (XXX)" or "RUC-0002 (XXX)"
+
+  // Sort sheets based on the last 4 digits of the tab name
+  sheets.sort(function(a, b) {
+    var aMatch = a.getName().match(regex);
+    var bMatch = b.getName().match(regex);
+    if (!aMatch || !bMatch) {
+      return 0;
+    }
+    var aNum = parseInt(aMatch[1].split("-")[1]);
+    var bNum = parseInt(bMatch[1].split("-")[1]);
+    return aNum - bNum;
+  });
+
+  // Reorder sheets based on the sorted array
+  for (var i = 0; i < sheets.length; i++) {
+    spreadsheet.setActiveSheet(sheets[i]);
+    spreadsheet.moveActiveSheet(i + 1);
+  }
+
+  // Set C4 value to sheet name for all sheets except the dashboard
+  for (var i = 6; i < sheets.length; i++) {
+    if (sheets[i].getName() !== "Dashboard") {
+      sheets[i].getRange("C4").setValue(sheets[i].getName());
+    }
+  }
+}
