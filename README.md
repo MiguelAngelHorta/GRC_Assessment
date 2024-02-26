@@ -18,8 +18,7 @@ Creates custom menu button in google sheets titled 'Automation' which allows use
 # Dashboard file
 This script navigates to the "Dashboard" tab of the active Google Sheet and displays a toast notification with the message "Going to Dashboard". This is assigned to the dashboard image on the top right corner of each assessment.
 
-**Excel Functions in assessment template:
-**
+# **Excel Functions in assessment template:**
 Used to calculate scores based on reference: =IF(C12="Null","-",SUM(IFERROR(VALUE(VLOOKUP(C12,Reference!$G$3:$H$17,3,0)),0),
      IFERROR(VALUE(VLOOKUP(C18,Reference!$G$3:$H$17,3,0)),0),
      IFERROR(VALUE(VLOOKUP(C34,Reference!$G$3:$H$17,3,0)),0),
