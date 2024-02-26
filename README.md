@@ -27,3 +27,5 @@ Used to calculate scores based on reference: =IF(C12="Null","-",SUM(IFERROR(VALU
 Used to pull Owner's department from by using an array textjoin fucntion to concatenate the respective owner to each control. =ARRAY_CONSTRAIN(ARRAYFORMULA(TEXTJOIN("; ", TRUE, IF(IFERROR(MATCH(Owners!$F:$F, IF(C4=Owners!$A:$A, Owners!$F:$F, ""), 0),"")=MATCH(ROW(Owners!$F:$F), ROW(Owners!$F:$F)), Owners!$F:$F, ""))), 1, 1)
 
 Used to pull the domain name and control description =VLOOKUP(REGEXREPLACE(C4, "\s*\(.*\)", ""), Controls!A:C, 3, FALSE)
+![template1](https://github.com/MiguelAngelHorta/Google-Sheets-Assessment/assets/106134627/234600d4-ef43-4ebe-b179-2600a407d459)
+![template2](https://github.com/MiguelAngelHorta/Google-Sheets-Assessment/assets/106134627/7d1e6f10-8997-4e1c-b7b9-295b2f3740de)
