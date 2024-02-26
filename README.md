@@ -18,3 +18,13 @@ Creates custom menu button in google sheets titled 'Automation' which allows use
 # Dashboard file
 This script navigates to the "Dashboard" tab of the active Google Sheet and displays a toast notification with the message "Going to Dashboard". This is assigned to the dashboard image on the top right corner of each assessment.
 
+**Excel Functions in assessment template:
+**
+Used to calculate scores based on reference: =IF(C12="Null","-",SUM(IFERROR(VALUE(VLOOKUP(C12,Reference!$G$3:$H$17,3,0)),0),
+     IFERROR(VALUE(VLOOKUP(C18,Reference!$G$3:$H$17,3,0)),0),
+     IFERROR(VALUE(VLOOKUP(C34,Reference!$G$3:$H$17,3,0)),0),
+     IFERROR(VALUE(VLOOKUP(C47,Reference!$G$3:$H$17,3,0)),0)))
+
+Used to pull Owner's department from by using an array textjoin fucntion to concatenate the respective owner to each RUC. =ARRAY_CONSTRAIN(ARRAYFORMULA(TEXTJOIN("; ", TRUE, IF(IFERROR(MATCH(Owners!$F:$F, IF(C4=Owners!$A:$A, Owners!$F:$F, ""), 0),"")=MATCH(ROW(Owners!$F:$F), ROW(Owners!$F:$F)), Owners!$F:$F, ""))), 1, 1)
+
+Used to pull the domain name and control description =VLOOKUP(REGEXREPLACE(C4, "\s*\(.*\)", ""), Controls!A:C, 3, FALSE)
