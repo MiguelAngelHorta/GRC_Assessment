@@ -5,6 +5,9 @@ This automation project can be used to create a summary view of all responses fr
 
 # updateExportAndOwnersTab file
 This script updates an export and owners tab in a Google Sheets document. It reads data from multiple sheets and specific cells within those sheets, and populates a new sheet with the data in a specific format and vlookups with rating category data. Additionally, it pulls column B from the export tab containing the concatenated 'Owners' email data and then splits the data into separate rows using semicolons as a delimeter. Finally, it displays a notification that the export is complete.
+![template 3](https://github.com/MiguelAngelHorta/Google-Sheets-Assessment/assets/106134627/4930fd51-7471-4ed2-94b2-6f1a797ba519)
+
+![template 5](https://github.com/MiguelAngelHorta/Google-Sheets-Assessment/assets/106134627/4e37166a-96f9-4420-9956-f83be239fe53)
 
 # sortTabsAndSetC4Values file
 This script that sets the value of cell C4 on all sheets in the active spreadsheet to the respective sheet name, except for the sheet named "Dashboard". Further, This script sorts the sheets in a Google Sheets spreadsheet based on the last 4 digits of the tab name in a specific format ("XXX-0001"). It first sorts the sheets based on the tab name and then reorders the sheets based on the sorted array.
