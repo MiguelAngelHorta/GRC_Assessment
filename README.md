@@ -1,8 +1,8 @@
-# GRC_Assessment
-Automation used to manage an assessment in google sheets.
+# GRC Assessment
+This automation project can be used to create a summary view of all responses from specific cells from each tab. This is useful to structure the responses of questionnaire templates in each tab within the g sheets file
 
-# GRC_Assessment
-The updateExportAndOwnersTab function is a Google Apps Script designed to update two specific sheets, namely 'Export' and 'Owners', within a Google Spreadsheet. Here's a summary of what the code does:
+# updateExportAndOwnersTab file
+The updateExportAndOwnersTab function is a Google Apps Script designed to update two specific sheets, namely 'Export' and 'Owners', within a Google Spreadsheet.
 
 Initialization:
 
