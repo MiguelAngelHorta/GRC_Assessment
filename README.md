@@ -1,4 +1,4 @@
-Link to GRC Assessment Template: https://docs.google.com/spreadsheets/d/1G1hS-xdcinTgkcjGvrWDnTBSsqgwRGOfhJpTO-HgLrs/edit?usp=sharing
+- [GRC Assessment Template Link]( https://docs.google.com/spreadsheets/d/1G1hS-xdcinTgkcjGvrWDnTBSsqgwRGOfhJpTO-HgLrs/edit?usp=sharing)
 
 # GRC Assessment
 This automation project can be used to create a summary view of all responses from specific cells from each tab. This is useful to structure the responses of questionnaire templates in each tab within the g sheets file
