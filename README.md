@@ -1,56 +1,20 @@
+Link to GRC Assessment Template: https://docs.google.com/spreadsheets/d/1G1hS-xdcinTgkcjGvrWDnTBSsqgwRGOfhJpTO-HgLrs/edit?usp=sharing
+
 # GRC Assessment
 This automation project can be used to create a summary view of all responses from specific cells from each tab. This is useful to structure the responses of questionnaire templates in each tab within the g sheets file
 
 # updateExportAndOwnersTab file
-The updateExportAndOwnersTab function is a Google Apps Script designed to update two specific sheets, namely 'Export' and 'Owners', within a Google Spreadsheet.
-
-Initialization:
-
-Gets the active spreadsheet (ss).
-Retrieves references to the 'Export' and 'Owners' sheets.
-Clear Existing Data:
-
-Clears the existing data in columns A through Y of the 'Export' sheet.
-Export Data Processing:
-
-Defines an array exportHeaders as column headers for the 'Export' sheet.
-Loops through the sheets in the spreadsheet, excluding the first 5 sheets.
-For each eligible sheet, extracts relevant data from specific cells and constructs a row for the 'Export' sheet.
-Adds Hyperlinks to the sheet names.
-Includes VLOOKUP formulas in certain columns.
-Update 'Export' Sheet:
-
-Sets the values in the 'Export' sheet with the processed export data.
-Update 'Owners' Sheet:
-
-Clears existing data in columns A through G of the 'Owners' sheet.
-Processes the data for the 'Owners' sheet based on the updated export data.
-Splits the owner(s) column and constructs rows for the 'Owners' sheet.
-Adds Hyperlinks to the sheet names.
-Apply VLOOKUP Formulas in 'Owners' Sheet:
-
-Adds VLOOKUP formulas to columns D, E, F, and G of the 'Owners' sheet.
-Utilizes references from the 'Reference' sheet.
-Toast Notification:
-
-Displays a toast notification in the spreadsheet indicating that the 'Export' and 'Owners' tabs are updated.
+This script updates an export and owners tab in a Google Sheets document. It reads data from multiple sheets and specific cells within those sheets, and populates a new sheet with the data in a specific format and vlookups with rating category data. Additionally, it pulls column B from the export tab containing the concatenated 'Owners' email data and then splits the data into separate rows using semicolons as a delimeter. Finally, it displays a notification that the export is complete.
 
 # sortTabsAndSetC4Values file
+This script that sets the value of cell C4 on all sheets in the active spreadsheet to the respective sheet name, except for the sheet named "Dashboard". Further, This script sorts the sheets in a Google Sheets spreadsheet based on the last 4 digits of the tab name in a specific format ("XXX-0001 (XXX)"). It first sorts the sheets based on the tab name and then reorders the sheets based on the sorted array.
 
-Sorting Tabs:
+# resetTabs file
+This script resets the status of all sheets by updating Cell C58 to 'Not started'. This is useful for resetting each sheet at the end of the assessment
 
-Retrieves all sheets in the active spreadsheet.
-Defines a regular expression (regex) to match tab names in a specific format, such as "ID-0001" or "ID-0002".
-Sorts the sheets based on the last 4 digits of the tab name using a custom sorting function.
-This custom sorting function extracts the numeric portion from the tab names and sorts the sheets accordingly.
-Reordering Sheets:
+# AutomationButton file
+Creates custom menu button in google sheets titled 'Automation' which allows user to run appscripts with the click of a button.
 
-After sorting, it iterates through the sheets and reorders them based on the sorted array.
-Uses setActiveSheet to set the active sheet to the current sheet in the iteration.
-Uses moveActiveSheet to move the active sheet to its new position in the order.
-Setting C4 Values:
+# Dashboard file
+This script navigates to the "Dashboard" tab of the active Google Sheet and displays a toast notification with the message "Going to Dashboard". This is assigned to the dashboard image on the top right corner of each assessment.
 
-Iterates through the sheets again, starting from the 6th sheet (index 5).
-For each sheet (except the one named "Dashboard"):
-Sets the value in cell C4 to the name of the sheet.
-This is done to display the sheet name in cell C4 for each sheet, providing a quick reference to the user.
